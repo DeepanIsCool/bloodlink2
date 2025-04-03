@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import custom animations */
+@import './utils/customAnimations.css';
+
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: white;
+  color: black;
+}
+
+@layer components {
+  /* Define the ripple class within the components layer */
+  .ripple {
+    @apply relative overflow-hidden;
+  }
+  
+  .ripple:after {
+    content: "";
+    @apply block absolute w-full h-full top-0 left-0 pointer-events-none opacity-0 scale-[10] transition-all duration-500;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+  }
+  
+  .ripple:active:after {
+    @apply scale-0 opacity-30 transition-none;
+  }
+
+  .btn-primary {
+    @apply bg-blood-red text-white font-semibold py-2 px-4 rounded-md hover:bg-dark-red ripple transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-blood-red border border-blood-red font-semibold py-2 px-4 rounded-md hover:bg-gray-100 ripple transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-4 border border-gray-200;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-transparent;
+  }
+}
